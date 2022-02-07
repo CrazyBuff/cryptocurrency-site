@@ -15,6 +15,7 @@ function App() {
         pairs = data;
       });
     
+      // eslint-disable-next-line array-callback-return
       let filtered = pairs.filter((pair) => {
         if (pair.quote_currency === "USD") {
           return pair;

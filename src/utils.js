@@ -1,8 +1,8 @@
-const FOREX_API_KEY = "f51bf1158ca70b9395db3f4616742559";
+//const FOREX_API_KEY = "f51bf1158ca70b9395db3f4616742559";
 
-const fetchConvertionRates = async (from, to, amount) => {
+//const fetchConvertionRates = async (from, to, amount) => {}
 
-}
+
 
 const fetchCryptoPrice = async (product_id) => {
     let result;
