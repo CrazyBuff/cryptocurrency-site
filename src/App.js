@@ -1,23 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import {useEffect, useState} from 'react';
+import {convertDataToAud} from './utils';
 
 function App() {
+  const [currencies, setCurrencies] = useState([]);
+
+
+  useEffect(() => {
+    let pairs = [];
+
+    const apiCall = async () => {
+      await fetch('https://api.exchange.coinbase.com/products')
+      .then(res => res.json())
+      .then(data => {
+        pairs = data;
+      });
+    
+      let filtered = pairs.filter((pair) => {
+        if (pair.quote_currency === "USD") {
+          return pair;
+        }
+      });
+
+      filtered = filtered.sort((a, b) => {
+        if (a.base_currency < b.base_currency) {
+          return -1;
+        } 
+        if (a.base_currency > b.base_currency) {
+          return 1;
+        }
+        return 0;
+      });
+      filtered = convertDataToAud(filtered);
+      console.log(filtered);
+      setCurrencies(filtered);
+
+  }
+    apiCall();
+
+  }, []);
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          piss
-        </a>
-      </header>
+      {currencies.map((current, index) => {
+        return (
+          <option key={index} value={current.id}>
+            {current.display_name} 
+          </option>
+        );
+      })}
     </div>
   );
 }
