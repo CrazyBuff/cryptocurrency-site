@@ -3,6 +3,19 @@ import {convertDataToAud} from './utils';
 
 function App() {
   const [currencies, setCurrencies] = useState([]);
+  const [priceData, setPriceData] = useState([]);
+
+  const fetchPrice = async (product_id) => {
+    let result;
+    await fetch(`https://api.exchange.coinbase.com/products/${product_id}/ticker`)
+        .then((res) => res.json())
+        .then((data) => {
+          result = data;
+          console.log(data)
+        });
+
+    return result;
+  }
 
 
   useEffect(() => {
@@ -31,18 +44,22 @@ function App() {
         }
         return 0;
       });
-      filtered = convertDataToAud(filtered);
-      console.log(filtered);
+      //filtered = convertDataToAud(filtered);
+  
       setCurrencies(filtered);
 
+
+    
   }
     apiCall();
 
   }, []);
 
 
+
+
   return (
-    <div className="App">
+    <div className="App" style={{ textAlign: 'center' }}>
       {currencies.map((current, index) => {
         return (
           <option key={index} value={current.id}>
