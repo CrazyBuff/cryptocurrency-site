@@ -1,0 +1,33 @@
+
+.text {
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Trebuchet MS';
+    font-size: 50px;
+    color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 80%;
+    padding: 20px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-selec: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+
+
+@keyframes glow {
+    from {
+        color: black;
+    }
+
+    to {
+        color: grey;
+    }
+}
