@@ -1,4 +1,5 @@
 import {useEffect, useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import Banner from './components/banner/banner';
 import Dashboard from './components/dashboard';
 
@@ -74,7 +75,7 @@ import Dashboard from './components/dashboard';
 // }
 
 
-function App() {
+export default function App() {
   const [currentState, setCurrentState] = useState(<Banner />);
 
   useEffect(() => {
@@ -98,4 +99,25 @@ function App() {
   )
 }
 
-export default App;
+
+export function TestApp() {
+  let navigate = useNavigate();
+  useEffect(() => {
+    const setState = () => {
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 1000);
+    }
+
+    window.addEventListener('click', setState);
+    return () => {
+      window.removeEventListener('click', setState)
+    }
+  }, [])
+
+  return (
+    <>
+    <Banner/>
+    </>
+  )
+}

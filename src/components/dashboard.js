@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Table from './table';
 import Navbar from './navbar/navbar';
+import Coinpage from '../routes/coinpage';
 
 export default function Dashboard() {
     const [coins, setCoins] = useState([]);
@@ -26,6 +27,7 @@ export default function Dashboard() {
         <>
         <Navbar />
         <Table data={coins}/>
+        <Coinpage />
         </>
     );
 }

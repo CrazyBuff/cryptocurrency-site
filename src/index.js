@@ -4,13 +4,29 @@ import './index.css';
 import './banner.css';
 import './App.css';
 import './navbar.css';
-import App from './App';
+import App, { TestApp } from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Coinpage from './routes/coinpage';
+import Dashboard from './components/dashboard';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<TestApp/>}/>
+      <Route path="/dashboard" element={<Dashboard/>}>
+        <Route path=":coinid" element={<Coinpage/>}/>
+      </Route>
+      <Route 
+        path="*"
+        element={
+          <main style={{ padding: '1rem' }}>
+            <p>There's nothing here!</p>
+          </main>
+        }      
+      />
+    </Routes>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 

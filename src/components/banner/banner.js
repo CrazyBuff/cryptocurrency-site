@@ -27,6 +27,7 @@ export default function Banner(props) {
     }, [])
 
     return (
+    <>
         <div style={divStyle} onClick={handleClick}>
         <div style={backgroundStyle}></div>
         <div className="text">
@@ -34,5 +35,6 @@ export default function Banner(props) {
             <p style={{animation: 'glow 1s ease-in-out infinite alternate'}}>click to continue</p>
         </div>
         </div>
+    </>
     )
 }

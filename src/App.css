@@ -25,3 +25,16 @@ body {
     opacity: 0;
   }
 }
+
+.crypto-data-row:hover {
+  background-color: #f2f2f2;
+}
+
+.crypto-table {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-selec: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
