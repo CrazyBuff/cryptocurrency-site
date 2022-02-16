@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import Table from './table';
 import Navbar from './navbar/navbar';
+import { Outlet, useNavigate } from 'react-router-dom';
 import Coinpage from '../routes/coinpage';
 
 export default function Dashboard() {
+    let navigate = useNavigate();
     const [coins, setCoins] = useState([]);
+    const [coinSelected, setCoinSelected] = useState();
+
+    const handleClick = (target) => {
+        console.log(target)
+        setCoinSelected(target);
+    }
 
     useEffect(() => {
         let result = [];
@@ -26,8 +34,8 @@ export default function Dashboard() {
     return (
         <>
         <Navbar />
-        <Table data={coins}/>
-        <Coinpage />
+        <Table data={coins} parentCallback={handleClick}/>
+        {!coinSelected ? <></> : <Coinpage coinId={coinSelected}/>}
         </>
     );
 }

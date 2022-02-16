@@ -1,7 +1,7 @@
 import React, { useState, useMemo} from 'react';
 import Pagination from './pagination/pagination';
 import { numberFormat, percentageFormat, formatPrice } from './utils';
-import {Link} from 'react-router-dom';
+import {useNavigate, Outlet} from 'react-router-dom';
 
 
 const tableStyle = {
@@ -49,7 +49,6 @@ const PAGESIZE = 10;
 
 export default function Table(props) {
     const data = props.data;
-
     const [currentPage, setCurrentPage] = useState(1);
 
 
@@ -77,8 +76,8 @@ export default function Table(props) {
                 {currentTableData.map((element, ind) => {
                     return (
                         
-                        <tr className='crypto-data-row' key={(currentPage-1)*PAGESIZE+ind} value={element.id} style={{height: '70px'}}>
-                            {/*can add div onClick effect -> navigate to desired coin page*/}
+                        <tr className='crypto-data-row' key={(currentPage-1)*PAGESIZE+ind} value={element.id} style={{height: '70px'}} onClick={() => props.parentCallback(element.id)}>
+                            
                             <td style={{textAlign: 'center'}}>{(currentPage-1)*PAGESIZE+ind+1}</td>
                             <td style={{width: '30px'}}><img src={element.image} alt={element.id} style={imgColStyle} /></td>
                             <td style={coinColStyle}>{element.name} <span style={{color: 'grey', paddingLeft: '15px'}}>{element.symbol.toUpperCase()}</span></td>
