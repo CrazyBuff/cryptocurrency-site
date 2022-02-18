@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Button from '../components/button';
 import {useParams} from 'react-router-dom';
 import {Line} from 'react-chartjs-2';
 import {
@@ -25,7 +26,7 @@ ChartJS.register(
 
 const style = {
     width: "75%",
-    display: "flex",
+    display: "grid",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
@@ -34,12 +35,30 @@ const style = {
     padding: 0,
     margin: 'auto',
     borderStyle: 'solid',
-    borderWidth: '1px'
+    borderWidth: '1px',
 }
 
-export default function Coinpage(props) {
+const buttonStyle = {
+    gridColumn: 1,
+    gridRow: 1,
+    width: '100px',
+    height: '30px',
+    margin: 10,
+    position: 'absolute'
+}
+
+const buttonStyle2 = {
+    gridColumn: 2,
+    gridRow: 1,
+    width: '100px',
+    height: 30,
+    margin: 10,
+    position: 'absolute'
+}
+
+export default function Coinpage() {
     let params = useParams();
-    const coinId = props.coinId;
+    const coinId = params.coinid;
     const [historicalData, setHistoricalData] = useState();
     const [days, setDays] = useState(1);
 
@@ -52,19 +71,26 @@ export default function Coinpage(props) {
         }
 
         fetchSingleCoinData();
-        document.getElementById('chart-container').scrollIntoView({behavior: "smooth", block: "center"})
+        document.getElementById('chart-container').scrollIntoView({behavior: "smooth",block: "center"})
     }, [coinId, days])
+
+    const handleClick = (target) => {
+        setDays(target);
+    }
 
     return (
         <>
-        <div id="chart-container" style={style}>
+        
         {
             !historicalData ? (
                 <p>loading</p>
             ) : (
+                <div id="chart-container" style={style}>
+                <Button style={buttonStyle} parentFunction={handleClick} displayText={'testing'} value={30}/>
+                <Button style={buttonStyle2} parentFunction={handleClick} displayText={'testing'} value={1}/>
                 <Line
                 data={{
-                    labels: historicalData.map((coin) => {
+                    labels: historicalData.map((coin) => { 
                         let date = new Date(coin[0]);
                         console.log(coin[0]);
                         let time = date.getHours() > 12
@@ -113,9 +139,10 @@ export default function Coinpage(props) {
                     }
                 }}
                 />
+                </div>
             )
         }
-        </div>
+        
         </>
     )
 }

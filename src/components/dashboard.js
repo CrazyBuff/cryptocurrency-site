@@ -7,11 +7,11 @@ import Coinpage from '../routes/coinpage';
 export default function Dashboard() {
     let navigate = useNavigate();
     const [coins, setCoins] = useState([]);
-    const [coinSelected, setCoinSelected] = useState();
+    
 
     const handleClick = (target) => {
         console.log(target)
-        setCoinSelected(target);
+        navigate(`/dashboard/${target}`);
     }
 
     useEffect(() => {
@@ -35,7 +35,7 @@ export default function Dashboard() {
         <>
         <Navbar />
         <Table data={coins} parentCallback={handleClick}/>
-        {!coinSelected ? <></> : <Coinpage coinId={coinSelected}/>}
+        <Outlet />
         </>
     );
 }

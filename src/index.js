@@ -4,7 +4,7 @@ import './index.css';
 import './banner.css';
 import './App.css';
 import './navbar.css';
-import App, { TestApp } from './App';
+import { TestApp } from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Coinpage from './routes/coinpage';
