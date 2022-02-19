@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Button from '../components/button';
 import {useParams} from 'react-router-dom';
 import {Line} from 'react-chartjs-2';
@@ -12,7 +12,7 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js'; 
-import {Chart as Chartjs} from 'chart.js/auto'
+
 
 ChartJS.register(
     CategoryScale,
@@ -33,7 +33,8 @@ const style = {
     marginTop: 25,
     marginBottom: 50,
     padding: 0,
-    margin: 'auto',
+    marginRight: 'auto',
+    marginLeft: 'auto',
     borderStyle: 'solid',
     borderWidth: '1px',
 }
@@ -63,6 +64,7 @@ export default function Coinpage() {
     const [days, setDays] = useState(1);
 
     console.log("data", historicalData);
+    console.log("coin", coinId)
     useEffect(() => {
         const fetchSingleCoinData = async () => {
             await fetch(`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=aud&days=${days}`)
@@ -71,7 +73,7 @@ export default function Coinpage() {
         }
 
         fetchSingleCoinData();
-        document.getElementById('chart-container').scrollIntoView({behavior: "smooth",block: "center"})
+        document.getElementById('chart-container').scrollIntoView({behavior: 'smooth', block: 'center'})
     }, [coinId, days])
 
     const handleClick = (target) => {
@@ -80,19 +82,19 @@ export default function Coinpage() {
 
     return (
         <>
-        
+        <div id="chart-container" style={style}>
+        {console.log('log', historicalData)}
         {
             !historicalData ? (
-                <p>loading</p>
+                <div><p>loading</p></div>
             ) : (
-                <div id="chart-container" style={style}>
+                <>
                 <Button style={buttonStyle} parentFunction={handleClick} displayText={'testing'} value={30}/>
                 <Button style={buttonStyle2} parentFunction={handleClick} displayText={'testing'} value={1}/>
                 <Line
                 data={{
                     labels: historicalData.map((coin) => { 
                         let date = new Date(coin[0]);
-                        console.log(coin[0]);
                         let time = date.getHours() > 12
                         ? `${date.getHours() - 12}:${date.getMinutes()} PM`
                         : `${date.getHours()}:${date.getMinutes()} AM`;
@@ -139,10 +141,11 @@ export default function Coinpage() {
                     }
                 }}
                 />
-                </div>
+                </>
             )
         }
-        
+        </div>
         </>
     )
+    
 }
