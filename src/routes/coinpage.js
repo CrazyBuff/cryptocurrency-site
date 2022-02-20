@@ -26,7 +26,7 @@ ChartJS.register(
 
 const style = {
     width: "75%",
-    display: "grid",
+    position: 'relative',
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
@@ -40,21 +40,41 @@ const style = {
 }
 
 const buttonStyle = {
-    gridColumn: 1,
-    gridRow: 1,
-    width: '100px',
-    height: '30px',
-    margin: 10,
-    position: 'absolute'
+    position: 'absolute',
+    right: '150px',
+    top: '10px',
+    backgroundColor: 'transparent',
+    backgroundImage: 'none',
+    border: '0px solid',
+    boxSizing: 'border-box',
+    cursor: 'pointer'
 }
 
 const buttonStyle2 = {
-    gridColumn: 2,
-    gridRow: 1,
-    width: '100px',
-    height: 30,
-    margin: 10,
-    position: 'absolute'
+    position: 'absolute',
+    right: '110px',
+    top: '10px',
+    backgroundColor: 'transparent',
+    backgroundImage: 'none',
+    border: '0px solid',
+    boxSizing: 'border-box',
+    cursor: 'pointer'
+}
+
+const buttonStyle3 = {
+    position: 'absolute',
+    right: '70px',
+    top: '10px',
+    backgroundColor: 'transparent',
+    backgroundImage: 'none',
+    border: '0px solid',
+    boxSizing: 'border-box',
+    cursor: 'pointer'
+}
+
+const spanStyle = {
+    fontSize: 12,
+    fontFamily: "Segoe UI,Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
 }
 
 export default function Coinpage() {
@@ -89,8 +109,9 @@ export default function Coinpage() {
                 <div><p>loading</p></div>
             ) : (
                 <>
-                <Button style={buttonStyle} parentFunction={handleClick} displayText={'testing'} value={30}/>
-                <Button style={buttonStyle2} parentFunction={handleClick} displayText={'testing'} value={1}/>
+                <Button btnStyle={buttonStyle} spanStyle={spanStyle} parentFunction={handleClick} displayText={'1D'} value={1}/>
+                <Button btnStyle={buttonStyle2} spanStyle={spanStyle} parentFunction={handleClick} displayText={'1M'} value={30}/>
+                <Button btnStyle={buttonStyle3} spanStyle={spanStyle} parentFunction={handleClick} displayText={'3M'} value={90}/>
                 <Line
                 data={{
                     labels: historicalData.map((coin) => { 
@@ -113,12 +134,7 @@ export default function Coinpage() {
                 }}
                 options={{
                     responsive: true,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Chart.js Line Chart'
-                        },
-                    },
+                   
                     interaction: {
                         mode: 'index',
                         intersect: false
