@@ -1,21 +1,26 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+const linkStyle = {
+    fontSize: 30, 
+    textDecoration: 'none', 
+    fontWeight: 'bold',
+    color: 'black',
+}
 
 export default function Navbar() {
 
 
     return (
         <>
-        <nav className="NavbarItems">
+        <div className="NavbarItems">
             <h1 className="navbar-logo">Crypto Sandbox</h1>
-            <div className="menu-icon">
-
+            <div className="nav-options">
+                <div className='sandbox-nav'>
+                <Link to="/sandbox" style={linkStyle}><div>To Sandbox <i class="arrows rights"></i></div></Link>
+                </div>
             </div>
-            <ul className="nav-list">
-                <li className='nav-li'><span className='nav-item-span'>hello</span></li>
-                <li className='nav-li'><span className='nav-item-span'>goodbye</span></li>
-                <li className='nav-li'><span className='nav-item-span'>sayonara</span></li>
-            </ul>
-        </nav>
+        </div>
         </>
     )
 }

@@ -1,7 +1,7 @@
 import React, { useState, useMemo} from 'react';
 import Pagination from './pagination/pagination';
 import { numberFormat, percentageFormat, formatPrice } from './utils';
-import {useNavigate, Outlet} from 'react-router-dom';
+
 
 
 const tableStyle = {

@@ -4,11 +4,14 @@ import './index.css';
 import './banner.css';
 import './App.css';
 import './navbar.css';
+import './sandbox.css';
 import { TestApp } from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Coinpage from './routes/coinpage';
+import SandboxPage from './routes/sandboxPage';
 import Dashboard from './components/dashboard';
+
 
 ReactDOM.render(
   <BrowserRouter>
@@ -17,6 +20,7 @@ ReactDOM.render(
       <Route path="/dashboard" element={<Dashboard/>}>
         <Route path=":coinid" element={<Coinpage/>}/>
       </Route>
+      <Route path="/sandbox" element={<SandboxPage/>} />
       <Route 
         path="*"
         element={

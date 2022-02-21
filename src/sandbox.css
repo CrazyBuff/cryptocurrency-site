@@ -1,0 +1,75 @@
+.coinlist-container {
+    float: right;
+    width: 27%;
+    position: relative;
+}
+
+.coinlist-table { 
+    display: table;
+    
+    border: 1px solid black;
+    border-radius: 20px;
+    width: 100%;
+    float: right;
+    margin-top: 50px;
+    margin-right: 100px;
+    border-spacing: 0px;
+    text-indent: initial;
+}
+
+.coinlist-table {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-selec: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+.coinlist-header {
+    text-align: left;
+    padding-left: 10%;
+    border-bottom: 1px solid black;
+    height: 40px
+}
+
+.coinlist-header span {
+    font-size: 20px;
+}
+
+.tabledata-row {
+    height: 60px;
+}
+
+.tabledata-row:hover {
+    background-color: #f2f2f2;
+}
+
+.tabledata-index {
+    text-align: center;
+}
+
+.tabledata-img {
+    text-align: left;
+    width: 40px;
+    padding-right: 10px;
+}
+
+.tabledata-img img {
+    width: 40px;
+}
+
+.tabledata-name {
+    text-align: left;
+}
+
+.tabledata-name span {
+    padding-left: 20px;
+    color: grey;
+}
+
+.coinlist-pagination-bar {
+    position: relative;
+    margin-right: 160px;
+
+}

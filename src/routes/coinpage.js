@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../components/button';
 import {useParams} from 'react-router-dom';
 import {Line} from 'react-chartjs-2';
