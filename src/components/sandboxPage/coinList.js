@@ -20,6 +20,8 @@ export default function CoinList(props) {
             <tr>
                 <th colSpan={3} className='coinlist-header'><span>Coin</span></th>
             </tr>
+        </thead>
+        <tbody>
             {currentTableData.map((element, index) => {
                 return (
                 <tr className="tabledata-row" key={(currentPage-1)*10+index} value={element.id} onClick={() => onClick([element.id, element.name])}>
@@ -29,7 +31,7 @@ export default function CoinList(props) {
                 </tr>
                 )
             })}
-        </thead>
+        </tbody>
     </table>
     <Pagination 
         className="coinlist-pagination-bar"

@@ -73,3 +73,30 @@
     margin-right: 160px;
 
 }
+
+.assets-table-container {
+    position: relative;
+    display: inline-block;
+    width: 10%;
+    margin-top: 28.8%;
+    margin-left: 15%;
+}
+
+.assets-table {
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 100%;
+    border-spacing: 0px;
+}
+
+.assets-table tr {
+    height: 30px;
+}
+
+.assets-table th {
+    border-bottom: 1px solid black;
+}
+
+.assets-row .assets-table-name:hover {
+    text-decoration: line-through black;
+}
