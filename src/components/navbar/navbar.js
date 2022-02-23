@@ -8,8 +8,8 @@ const linkStyle = {
     color: 'black',
 }
 
-export default function Navbar() {
-
+export default function Navbar(props) {
+    const {navLink, inLinkHTML} = props;
 
     return (
         <>
@@ -17,7 +17,7 @@ export default function Navbar() {
             <h1 className="navbar-logo">Crypto Sandbox</h1>
             <div className="nav-options">
                 <div className='sandbox-nav'>
-                <Link to="/sandbox" style={linkStyle}><div>To Sandbox <i class="arrows rights"></i></div></Link>
+                <Link to={navLink} style={linkStyle}>{inLinkHTML}</Link>
                 </div>
             </div>
         </div>

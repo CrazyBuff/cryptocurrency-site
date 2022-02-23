@@ -13,8 +13,8 @@
 
 .nav-options {
     float: right;
-    margin-top: 30px;
-    margin-right: 90px
+    margin-top: 2%;
+    margin-right: 3%
 }
 
 .sandbox-nav:hover {
@@ -32,4 +32,9 @@
 .rights {
     transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
+}
+
+.lefts {
+    transform: rotate(-230deg);
+    -webkit-transform: rotate(-230deg);
 }

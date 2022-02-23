@@ -14,6 +14,7 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js'; 
+import Navbar from "../components/navbar/navbar";
 
 
 ChartJS.register(
@@ -71,6 +72,9 @@ export default function SandboxPage() {
     }
 
     const handleSelectDayClick = (target) => {
+        if(selectedAssets.length > 0) {
+            alert('Remove current selected assets to get correct data');
+        }
         setSelectedDays(target);
     }
 
@@ -121,61 +125,62 @@ export default function SandboxPage() {
 
     return (
         <>
-        <div>
-            <div className="portfolio-chart-container">
-                {
-                    portfolioData.length > 0 ? 
-                    <Line 
-                    data={{
-                        labels: portfolioData.map((element) => {
-                            return element[0];
-                        }),
+        <Navbar navLink={'/dashboard'} inLinkHTML={<div><i class="arrows lefts"></i>To Dashboard</div>}/>
+        <div className="portfolio-chart-container">
+            {console.log(portfolioData.length)}
+            {
+                portfolioData.length > 0 ? 
+                <Line 
+                data={{
+                    labels: portfolioData.map((element) => {
+                        return element[0];
+                    }),
 
-                        datasets: [
-                            {
-                                data: portfolioData.map((element) => element[1]),
-                                label: `Virtual portfolio ( Past ${selectedDays} Days )`,
-                                borderColor: "#0a8dff",
-                                pointHoverRadius: 1,
-                                pointRadius: 1
+                    datasets: [
+                        {
+                            data: portfolioData.map((element) => element[1]),
+                            label: `Virtual portfolio ( Past ${selectedDays} Days )`,
+                            borderColor: "#0a8dff",
+                            pointHoverRadius: 1,
+                            pointRadius: 1
+                        }
+                    ],
+                }}
+                options={{
+                    responsive: true,
+                    
+                    interaction: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                            display: true,
+                            text: 'Time Period'
                             }
-                        ],
-                    }}
-                    options={{
-                        responsive: true,
-                       
-                        interaction: {
-                            mode: 'index',
-                            intersect: false
                         },
-                        scales: {
-                            x: {
-                                display: true,
-                                title: {
-                                display: true,
-                                text: 'Time Period'
-                                }
-                            },
-                            y: {
-                                display: true,
-                                title: {
-                                display: true,
-                                text: 'Value'
-                                }
+                        y: {
+                            display: true,
+                            title: {
+                            display: true,
+                            text: 'Value'
                             }
                         }
-                    }}
-                    />
-                     :
-                    <h2>Select a time period, then select up to 5 coins</h2>
-                }
-            </div>
-            <div className="assets-buttons-container">
-            <SelectTime handleClick={handleSelectDayClick}/>
-            <Assets asset={selectedAssets} removeAsset={removeAsset} constructData={constructData}/>
-            </div>
-            <CoinList data={coins} onClick={handleCoinListClick}/>
+                    }
+                }}
+                />
+                    :
+                <h2>Select a time period, then select up to 5 coins</h2>
+            }
         </div>
+        <div className="assets-buttons-container">
+        <SelectTime handleClick={handleSelectDayClick}/>
+        <Assets asset={selectedAssets} removeAsset={removeAsset} constructData={constructData}/>
+        </div>
+        <CoinList data={coins} onClick={handleCoinListClick}/>
+
         </>
     )
 }

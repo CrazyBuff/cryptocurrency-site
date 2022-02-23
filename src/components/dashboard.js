@@ -27,7 +27,7 @@ export default function Dashboard() {
 
     return (
         <>
-        <Navbar />
+        <Navbar navLink={'/sandbox'} inLinkHTML={<div>To Sandbox <i class="arrows rights"></i></div>}/>
         <Table data={coins} parentCallback={handleClick}/>
         <Outlet />
         </>
