@@ -167,7 +167,7 @@ export default function SandboxPage() {
                     }}
                     />
                      :
-                    <></>
+                    <h2>Select a time period, then select up to 5 coins</h2>
                 }
             </div>
             <div className="assets-buttons-container">
