@@ -46,3 +46,27 @@ export const formatPrice = (data) => {
     }
 }
 
+export const formatHistoricData = (data) => {
+    const newData = data.map((coin) => {
+        let date = new Date(coin[0]);
+        return [date.toLocaleDateString(), coin[1]];
+    });
+
+    return newData
+}
+
+export const simplifyData = (data) => {
+    // for some fucking reason the element at index 1 always become NaN, so this is the only fix
+    // I could come up with AM I DUMB???
+    let simplifiedData = [0, 0];
+    for (let i = 0; i < data.length; i++) {
+        if (i !== data.length - 1) {
+            if (data[i][0] !== data[i+1][0]) {
+                simplifiedData.push(data[i])
+            }
+        } else {
+            simplifiedData.push(data[i])
+        }
+    }
+    return simplifiedData;
+}
